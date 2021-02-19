@@ -1,0 +1,19 @@
+# Vertices
+# Vertex ID, Square ID
+0,0
+1,1
+2,11
+3,10
+4,11
+
+# Edges
+# From, To, Distance
+0,1,1
+1,2,0.5
+2,3,0.5
+3,0,0.5
+3,4,1
+
+# Source and Dest
+S,2
+D,4

@@ -1,0 +1,13 @@
+CS 6511 – AI – Project 1
+###############################################
+
+	Description:
+
+	To solve the problem of finding the shortest path between two vertices, two algorithms have been used: Dijkstra for uninformed search and A* for informed search implementation. Dijkstra algorithm traverses over every vertex finding a vertex that has the least cost from current vertex, whereas A* algorithm finds a vertex that has the least cost from current vertex and to the destination vertex using Euclidean distance. To compare the algorithms, five outputs will be displayed: the order of visited vertices, the number of visited vertices, the cost of the shortest path, the time it took to find the solution and the shortest path itself, if found. Additionally, the contour of visited vertices will be displayed.
+
+	How to Run:
+
+	python3 csci6511_p1_natavan_akhundova.py p1_graph.txt
+		where p1_graph.txt is a text file containing information about vertices, edges, source and destination vertices based on the given template. 
+	Libraries needed to be in the sytem to run the code successfully: 
+		csv, sys, math, time, matplotlib.pyplot, numpy
