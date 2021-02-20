@@ -62,6 +62,18 @@ def is_safe(adj_vertices, color):
 
 	return True
 
+# A Function to Return Least Constraining Values of Colors
+def ordered_colors(available_colors, adj_vertices):
+	colors_count = {k:0 for k in available_colors}
+	for adj_v in adj_vertices:
+		if vertices[adj_v]["assigned"] != -1:
+			adj_color = vertices[adj_v]["assigned"]
+			if adj_color in colors_count:
+				colors_count[adj_color] += 1
+
+
+	return sorted(colors_count, key=colors_count.get, reverse=True)
+
 # A Recursive Helping Function for Coloring the Graph - Backtracking Search
 def color_graph_recursive(v_id, keys):
 	# if all vertices have been colored
@@ -71,9 +83,10 @@ def color_graph_recursive(v_id, keys):
 		return True
 
 	adj_vertices = edges[v_id] # get adjacent vertices of the vertex
+	colors = ordered_colors(vertices[v_id]["available"], adj_vertices) # get least constraining minimum reamining variable
 
 	# find a color in available colors for the vertex that is safe to assign
-	for color in vertices[v_id]["available"]:
+	for color in colors:
 		if is_safe(adj_vertices, color):
 			vertices[v_id]["assigned"] = color # assign the color
 
