@@ -1,0 +1,12 @@
+CS 6511 – AI – Project 2
+###############################################
+
+	Description:
+
+	
+
+	How to Run:
+
+	javac Csci6511_p2_natavan_akhundova.java
+	java Csci6511_p2_natavan_akhundova graph.txt
+		where graph.txt is a text file containing information about the number of colors and edges based on the given template. 
