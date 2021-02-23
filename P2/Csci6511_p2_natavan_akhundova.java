@@ -222,7 +222,7 @@ public class Csci6511_p2_natavan_akhundova {
                 }
                 // ----------- End Processing Adjacent Vertices -----------
 
-                // Arc Consistency Checking
+                // 3-Consistency Checking
                 if (!AC3()) failure = true;
 
                 if (!failure && colorGraphRecursive(nextVertexId)) return true; // recursively color other vertices

@@ -3,7 +3,11 @@ CS 6511 – AI – Project 2
 
 	Description:
 
-	
+	To solve the problem of graph coloring a DFS search algorithm with backtracking has been applied. It includes two heuristics: min remaining values and least constraining values. Additionally, it propagates constraints using Forward Checking and AC-3.
+
+	Github Link: 
+
+	https://github.com/Natavan-A/AI_Assignments/tree/main/P2
 
 	How to Run:
 
