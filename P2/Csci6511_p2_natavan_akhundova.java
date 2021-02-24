@@ -94,7 +94,7 @@ public class Csci6511_p2_natavan_akhundova {
         }
 
         // restore removed colors from AC-3 checking
-        if (removedColors.size() > 0) {
+        if (removedColors != null && removedColors.size() > 0) {
             Set<Integer> keys = removedColors.keySet();
             for (int key : keys) {
                 ArrayList<Integer> values = removedColors.get(key);
@@ -168,9 +168,10 @@ public class Csci6511_p2_natavan_akhundova {
      * @return boolean
      */
     public static boolean AC3() {
-        Queue<int[]> arcsCopy = new LinkedList<>(arcs);
+        Queue<int[]> arcsCopy = new LinkedList<>(arcs); // store all arcs in the CSP into a queue
         removedColors = new HashMap<>();
 
+        // for every arc check arc consistency
         while (arcsCopy.size() != 0){
             int[] xy = arcsCopy.remove();
             int xId = xy[0];
