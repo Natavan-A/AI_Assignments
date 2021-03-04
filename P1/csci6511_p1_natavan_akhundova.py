@@ -1,6 +1,7 @@
 import csv, sys, math, time
 import matplotlib.pyplot as plt
 import numpy as np
+import heapq
 
 # additional variables
 SLEEP_TIME = 1							# time between executing subsequent steps
@@ -96,7 +97,9 @@ def calculate_euclidean_distance(start, end):
 	start_row_position = vertices[start]//BOARD_ROW_SIZE
 	end_col_position = vertices[end]%BOARD_COL_SIZE
 	end_row_position = vertices[end]//BOARD_ROW_SIZE
-	return int(math.dist([start_row_position, start_col_position], [end_row_position, end_col_position]))
+
+	dist = int(math.dist([start_row_position, start_col_position], [end_row_position, end_col_position]))
+	return dist if dist > 1 else 0 # considering adjacent squares 0
 
 # A Function for Printing The Shortest Path
 def print_shortest_path(path):
@@ -207,24 +210,13 @@ def informed_search():
 	visited_vertices = [0]*size_of_vertices 	# for graph: is 1 if vertex is visited
 	visited_vertices_count = 0					# for counting visited vertices while searching the destination
 
-	open_list = []						# contains vertices yet to visit
-	closed_list = set()					# contains vertices already visited
-	open_list.append(source)			# add a source vertex to visit first
+	open_list = []									# contains vertices yet to visit
+	closed_list = set()								# contains vertices already visited
+	heapq.heappush(open_list, (F[source], source))	# add a source vertex to visit first
 
 	print("\tOrder of visited vertices:")
 	while len(open_list) > 0:
-		current_vertex = open_list[0]
-		current_index = 0
-
-		# look for the lowest F score in the open list
-		for i in range(len(open_list)):
-			v = open_list[i]
-			if F[v] < F[current_vertex]:
-				current_vertex = v
-				current_index = i
-
-		# switch the vertex to the closed list
-		open_list.pop(current_index)
+		current_vertex = heapq.heappop(open_list)[1]
 		closed_list.add(current_vertex)
 
 		# the destination vertex is found
@@ -260,9 +252,14 @@ def informed_search():
 				parent[v_id] = current_vertex
 				G[v_id] = G_cost
 				H_cost = calculate_euclidean_distance(v_id, destination) # estimated distance from the linked vertex to the end vertex
+				old_F = F[v_id]
 				F[v_id] = G[v_id] + H_cost
-			if v_id not in open_list: 	# if does not exist in the open list, add
-				open_list.append(v_id)
+				if (old_F, v_id) not in open_list: 	# if does not exist in the open list, add
+					heapq.heappush(open_list, (F[v_id], v_id))
+				else:
+					open_list.remove((old_F, v_id)) # remove from list before adding updated value
+					heapq.heappush(open_list, (F[v_id], v_id))
+					heapq.heapify(open_list)
 
 	# result
 	if F[destination] == INF:

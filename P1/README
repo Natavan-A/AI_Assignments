@@ -10,4 +10,4 @@ CS 6511 – AI – Project 1
 	python3 csci6511_p1_natavan_akhundova.py p1_graph.txt
 		where p1_graph.txt is a text file containing information about vertices, edges, source and destination vertices based on the given template. 
 	Libraries needed to be in the sytem to run the code successfully: 
-		csv, sys, math, time, matplotlib.pyplot, numpy
+		csv, sys, math, time, matplotlib.pyplot, numpy, heapq
